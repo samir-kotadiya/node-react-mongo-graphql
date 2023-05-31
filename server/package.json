@@ -1,0 +1,33 @@
+{
+  "name": "codebase-stack-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=16.17.1 <17",
+    "yarn": "~1.22.19"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-specifier-resolution=node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-koa": "^3.12.0",
+    "bcrypt": "^5.1.0",
+    "convict": "^6.2.4",
+    "dotenv": "^16.0.3",
+    "graphql": "^16.6.0",
+    "jsonwebtoken": "^9.0.0",
+    "koa": "^2.14.2",
+    "koa-bodyparser": "^4.4.0",
+    "koa-cors": "^0.0.16",
+    "koa-graphql": "^0.12.0",
+    "koa-router": "^12.0.0",
+    "mongoose": "^7.2.1",
+    "validator": "^13.9.0"
+  }
+}
