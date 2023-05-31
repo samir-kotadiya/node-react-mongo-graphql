@@ -1,11 +1,16 @@
 import { Row, Col } from "react-bootstrap";
 import UserList from "../components/users/list";
 import UserModal from "../components/users/modal";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export default function Users(props) {
 	const [users, setUsers] = useState([]);
+	const componentRef = useRef(null);
+
+	const handleRef = () => {
+		console.log(componentRef.current);
+	};
 
 	useEffect(() => {
 		return async () => { fetchItems() };
@@ -51,22 +56,24 @@ export default function Users(props) {
 
 	return (
 		<>
-			<Row>
-				<Col>
-					<h3 style={{ margin: "20px 0" }}>Users Database (react + rest API)</h3>
-					<p>Showing users with the email domain "example.com".</p>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<UserModal buttonLabel="Add User" addUpdateUser={addUpdateUser} />
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<UserList users={users} addUpdateUser={addUpdateUser} />
-				</Col>
-			</Row>
+			<div ref={componentRef}>
+				<Row ref={componentRef}  onClick={handleRef}>
+					<Col>
+						<h3 style={{ margin: "20px 0" }}>Users Database (react + rest API)</h3>
+						<p>Showing users with the email domain "example.com".</p>
+					</Col>
+				</Row>
+				<Row ref={componentRef} onClick={handleRef}>
+					<Col>
+						<UserModal buttonLabel="Add User" addUpdateUser={addUpdateUser} />
+					</Col>
+				</Row>
+				<Row ref={componentRef}  onClick={handleRef}>
+					<Col>
+						<UserList users={users} addUpdateUser={addUpdateUser} />
+					</Col>
+				</Row>
+			</div>
 		</>
 	);
 }

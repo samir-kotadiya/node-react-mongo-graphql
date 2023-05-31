@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
 export default function UserForm(props) {
@@ -6,7 +6,13 @@ export default function UserForm(props) {
 	const [step, setStep] = useState(1);
 	const [user, setUser] = useState(userObj || {name: '', email: '', password: ''});
 
-	const nextStep = () => {
+	const step1Ref = useRef(null);
+
+	useEffect(() => {
+		step1Ref.current.focus();
+	}, []);
+
+	const nextStep = () => {		
 		setStep(step + 1);
 	};
 
@@ -31,7 +37,7 @@ export default function UserForm(props) {
 				<form onSubmit={nextStep}>
 					<Form.Group className="mb-3">
 						<Form.Label>Name *</Form.Label>
-						<Form.Control type="text" name="name" id="name" placeholder="Enter name" onChange={handleChange} value={user?.name === null ? '' : user.name} required />
+						<Form.Control type="text" name="name" id="name" placeholder="Enter name" onChange={handleChange} value={user?.name === null ? '' : user.name} required ref={step1Ref} />
 					</Form.Group>
 
 					<Form.Group className="mb-3">
