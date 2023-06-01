@@ -10,7 +10,7 @@ export default function GraphQL() {
 	const [updateMutationUser] = useMutation(UPDATE_USER);
 	const [deleteMutationUser] = useMutation(DELETE_USER);
 
-	if (error) return 'Something went wrong';
+	if (error) return 'Something went wrong while calling graphQL API, Ensure surver is running';
 	if (loading) return 'Fetching...';
 
 	/**
@@ -25,10 +25,9 @@ export default function GraphQL() {
 			} else {
 				await updateMutationUser({ variables: { ...user }, refetchQueries: [GET_USERS] });
 			}
-			alert('success');			 
 		} catch (err) {
 			console.error(err);
-			alert(err?.message || 'something went wrong');
+			alert('something went wrong, ensure server is running');
 		}
 	}
 
@@ -42,7 +41,7 @@ export default function GraphQL() {
 			await deleteMutationUser({ variables: { id }, refetchQueries: [GET_USERS] });
 		} catch (err) {
 			console.error(err);
-			alert(err?.message || 'something went wrong');
+			alert('something went wrong, ensure server is running');
 		}
 	}
 

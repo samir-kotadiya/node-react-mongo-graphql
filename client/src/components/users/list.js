@@ -4,7 +4,6 @@ import UserModal from './modal';
 
 export default function UserList(props) {
 	const { users, addUpdateUser, deleteUser } = props;
-	
 	/**
 	 * overrite delete with confirmation box
 	 * @param {*} id 
@@ -15,7 +14,7 @@ export default function UserList(props) {
 			deleteUser(id);
 		}
 	}
-	
+
 	return (
 		<div className="container">
 			<Table responsive hover>
@@ -29,7 +28,7 @@ export default function UserList(props) {
 					</tr>
 				</thead>
 				<tbody>
-					{users && users.map((user) => (
+					{users?.length ? (users.map(user => (
 						<tr key={user._id}>
 							<th scope="row">{user._id}</th>
 							<td>{user.name}</td>
@@ -43,7 +42,7 @@ export default function UserList(props) {
 								</div>
 							</td>
 						</tr>
-					))}
+					))) : (<tr><th>No users{deleteUser && ' with the email domain "example.com"'}, you can add new by clicking on add button.</th></tr>)}
 				</tbody>
 			</Table>
 		</div>
